@@ -1,0 +1,76 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/usr/local/Cellar/maven/3.9.11/libexec/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.ncu.college:studentservice >-------------------
+[INFO] Building studentservice 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.3:run (default-cli) > test-compile @ studentservice >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ studentservice ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ studentservice ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ studentservice ---
+[INFO] skip non existing resourceDirectory /Users/ADML/Desktop/microservices /src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ studentservice ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.5.3:run (default-cli) < test-compile @ studentservice <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.5.3:run (default-cli) @ studentservice ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.3)
+
+2025-08-11T10:29:27.580+05:30  INFO 32327 --- [demo-app] [           main] com.ncu.college.DemoServiceApplication   : Starting DemoServiceApplication using Java 24.0.2 with PID 32327 (/Users/ADML/Desktop/microservices /target/classes started by ADML in /Users/ADML/Desktop/microservices )
+2025-08-11T10:29:27.583+05:30  INFO 32327 --- [demo-app] [           main] com.ncu.college.DemoServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-08-11T10:29:28.529+05:30  INFO 32327 --- [demo-app] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8585 (http)
+2025-08-11T10:29:28.554+05:30  INFO 32327 --- [demo-app] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-11T10:29:28.554+05:30  INFO 32327 --- [demo-app] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-11T10:29:28.627+05:30  INFO 32327 --- [demo-app] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-11T10:29:28.627+05:30  INFO 32327 --- [demo-app] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 981 ms
+2025-08-11T10:29:29.131+05:30  INFO 32327 --- [demo-app] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8585 (http) with context path '/'
+2025-08-11T10:29:29.143+05:30  INFO 32327 --- [demo-app] [           main] com.ncu.college.DemoServiceApplication   : Started DemoServiceApplication in 2.075 seconds (process running for 2.459)
+2025-08-11T10:29:33.622+05:30  INFO 32327 --- [demo-app] [nio-8585-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-11T10:29:33.623+05:30  INFO 32327 --- [demo-app] [nio-8585-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-08-11T10:29:33.624+05:30  INFO 32327 --- [demo-app] [nio-8585-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+GET: Fetching all students
+GET: Fetching student with ID: 1
+POST: Creating new student: Alice Johnson
+PUT: Updating student with ID: 3
+PATCH: Partially updating student with ID: 3
+GET: Searching students with name containing: alice
+HEAD: Checking if student with ID 1 exists
+OPTIONS: Returning allowed methods
+DELETE: Deleting student with ID: 2
+GET: Fetching all students
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14:29 min
+[INFO] Finished at: 2025-08-11T10:43:55+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.3:run (default-cli) on project studentservice: Process terminated with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
