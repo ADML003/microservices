@@ -1,9 +1,8 @@
 package com.ncu.college.controller;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,80 +14,102 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ncu.college.dto.StudentDto;
+import com.ncu.college.service.IStudentService;
+
 @RequestMapping("/students")
 @RestController
 public class StudentController {
 
-    // Simulated in-memory data store
-    private Map<Long, Student> students = new HashMap<>();
-    private Long nextId = 1L;
+    private final IStudentService studentService;
 
-    // Constructor to add some sample data
-    public StudentController() {
-        students.put(1L, new Student(1L, "John Doe", "john@example.com", 20));
-        students.put(2L, new Student(2L, "Jane Smith", "jane@example.com", 22));
-        nextId = 3L;
+    @Autowired
+    public StudentController(IStudentService studentService) {
+        this.studentService = studentService;
     }
 
     // GET - Get all students
     @GetMapping
-    public ResponseEntity<Collection<Student>> getAllStudents() {
-        System.out.println("GET: Fetching all students");
-        return ResponseEntity.ok(students.values());
+    public ResponseEntity<List<StudentDto>> getAllStudents() {
+        try {
+            System.out.println("GET: Fetching all students");
+            List<StudentDto> students = studentService.getAllStudents();
+            return ResponseEntity.ok(students);
+        } catch (Exception e) {
+            System.err.println("Error fetching students: " + e.getMessage());
+            throw new RuntimeException("Error fetching students", e);
+        }
     }
 
     // GET - Get student by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
-        System.out.println("GET: Fetching student with ID: " + id);
-        Student student = students.get(id);
-        if (student != null) {
+    public ResponseEntity<StudentDto> getStudentById(@PathVariable Long id) {
+        try {
+            System.out.println("GET: Fetching student with ID: " + id);
+            StudentDto student = studentService.getStudentById(id);
             return ResponseEntity.ok(student);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            System.err.println("Error fetching student by ID: " + e.getMessage());
+            throw new RuntimeException("Error fetching student by ID", e);
         }
-        return ResponseEntity.notFound().build();
     }
 
     // POST - Create new student
     @PostMapping
-    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        System.out.println("POST: Creating new student: " + student.getName());
-        student.setId(nextId++);
-        students.put(student.getId(), student);
-        return ResponseEntity.status(HttpStatus.CREATED).body(student);
+    public ResponseEntity<StudentDto> createStudent(@RequestBody StudentDto studentDto) {
+        try {
+            System.out.println("POST: Creating new student: " + studentDto.getName());
+            StudentDto createdStudent = studentService.createStudent(studentDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
+        } catch (Exception e) {
+            System.err.println("Error creating student: " + e.getMessage());
+            throw new RuntimeException("Error creating student", e);
+        }
     }
 
     // PUT - Update existing student (full update)
     @PutMapping("/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student studentDetails) {
-        System.out.println("PUT: Updating student with ID: " + id);
-        Student student = students.get(id);
-        if (student != null) {
-            student.setName(studentDetails.getName());
-            student.setEmail(studentDetails.getEmail());
-            student.setAge(studentDetails.getAge());
-            return ResponseEntity.ok(student);
+    public ResponseEntity<StudentDto> updateStudent(@PathVariable Long id, @RequestBody StudentDto studentDto) {
+        try {
+            System.out.println("PUT: Updating student with ID: " + id);
+            StudentDto updatedStudent = studentService.updateStudent(id, studentDto);
+            return ResponseEntity.ok(updatedStudent);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            System.err.println("Error updating student: " + e.getMessage());
+            throw new RuntimeException("Error updating student", e);
         }
-        return ResponseEntity.notFound().build();
     }
 
-    // DELETE - Delete student by ID
+        // DELETE - Delete student by ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
-        System.out.println("DELETE: Deleting student with ID: " + id);
-        Student removed = students.remove(id);
-        if (removed != null) {
-            return ResponseEntity.noContent().build();
+    public ResponseEntity<String> deleteStudent(@PathVariable Long id) {
+        try {
+            System.out.println("DELETE: Deleting student with ID: " + id);
+            studentService.deleteStudent(id);
+            return ResponseEntity.ok("Student with ID " + id + " has been deleted successfully.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            System.err.println("Error deleting student: " + e.getMessage());
+            throw new RuntimeException("Error deleting student", e);
         }
-        return ResponseEntity.notFound().build();
     }
 
-    // DELETE - Delete all students
+    // DELETE - Clear all students
     @DeleteMapping
-    public ResponseEntity<Void> deleteAllStudents() {
-        System.out.println("DELETE: Deleting all students");
-        students.clear();
-        nextId = 1L;
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> clearAllStudents() {
+        try {
+            System.out.println("DELETE: Clearing all students");
+            studentService.deleteAllStudents();
+            return ResponseEntity.ok("All students have been cleared successfully.");
+        } catch (Exception e) {
+            System.err.println("Error clearing students: " + e.getMessage());
+            throw new RuntimeException("Error clearing students", e);
+        }
     }
 
     // Simple Student class

@@ -1,2 +1,10 @@
 /Users/ADML/Desktop/microservices /src/main/java/com/ncu/college/DemoServiceApplication.java
+/Users/ADML/Desktop/microservices /src/main/java/com/ncu/college/config/ApplicationConfig.java
+/Users/ADML/Desktop/microservices /src/main/java/com/ncu/college/controller/DemoController.java
 /Users/ADML/Desktop/microservices /src/main/java/com/ncu/college/controller/StudentController.java
+/Users/ADML/Desktop/microservices /src/main/java/com/ncu/college/dto/StudentDto.java
+/Users/ADML/Desktop/microservices /src/main/java/com/ncu/college/model/Student.java
+/Users/ADML/Desktop/microservices /src/main/java/com/ncu/college/repository/IStudentRepository.java
+/Users/ADML/Desktop/microservices /src/main/java/com/ncu/college/repository/StudentRepositoryImpl.java
+/Users/ADML/Desktop/microservices /src/main/java/com/ncu/college/service/IStudentService.java
+/Users/ADML/Desktop/microservices /src/main/java/com/ncu/college/service/StudentServiceImpl.java
