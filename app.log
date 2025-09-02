@@ -58,3 +58,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 GET: Fetching all students
 POST: Creating new student: Duplicate Test
 Error creating student: PreparedStatementCallback; Duplicate entry 'debug@example.com' for key 'students.email'
+GET: Fetching all students
+GET: Fetching student with ID: 1
+2025-09-02T17:29:35.072+05:30  WARN 76562 --- [student-service] [nio-8585-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Illegal unquoted character ((CTRL-CHAR, code 10)): has to be escaped using backslash to be included in string value]
+2025-09-02T17:29:35.609+05:30  WARN 76562 --- [student-service] [nio-8585-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Illegal unquoted character ((CTRL-CHAR, code 10)): has to be escaped using backslash to be included in string value]
+DELETE: Deleting student with ID: 999
+POST: Creating new student: J hhbhDo
+GET: Fetching all students
+PUT: Updating student with ID: 1
+GET: Fetching student with ID: 1
+GET: Fetching student with ID: 2
+2025-09-02T17:33:32.269+05:30  WARN 76562 --- [student-service] [io-8585-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Illegal unquoted character ((CTRL-CHAR, code 10)): has to be escaped using backslash to be included in string value]
+POST: Creating new student: Test Student
+PUT: Updating student with ID: 19
+2025-09-02T17:34:20.818+05:30  WARN 76562 --- [student-service] [nio-8585-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Illegal unquoted character ((CTRL-CHAR, code 10)): has to be escaped using backslash to be included in string value]
