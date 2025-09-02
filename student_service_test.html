@@ -15,15 +15,17 @@
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         min-height: 100vh;
-        padding: 20px;
+        padding: 15px;
+        margin: 0;
       }
 
       .container {
-        max-width: 1000px;
-        margin: 0 auto;
+        width: 100%;
+        max-width: none;
+        margin: 0;
         background: white;
         border-radius: 15px;
-        padding: 30px;
+        padding: 25px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
       }
 
@@ -54,23 +56,33 @@
       }
 
       .endpoint {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-        padding: 15px;
+        display: grid;
+        grid-template-columns: 100px 1fr 120px;
+        grid-template-rows: auto auto auto;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding: 20px;
         background: #f8f9fa;
         border-radius: 8px;
         border-left: 4px solid #007bff;
+        align-items: start;
+      }
+
+      .endpoint-row {
+        display: contents;
       }
 
       .method {
-        padding: 5px 15px;
+        padding: 8px 16px;
         border-radius: 20px;
         font-weight: bold;
-        margin-right: 15px;
-        min-width: 80px;
         text-align: center;
         color: white;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
       }
 
       .get {
@@ -88,24 +100,26 @@
       }
 
       .url {
-        flex: 1;
         font-family: "Courier New", monospace;
         background: white;
-        padding: 10px;
+        padding: 12px;
         border-radius: 5px;
         border: 1px solid #ddd;
-        margin-right: 10px;
+        font-size: 0.9rem;
+        width: 100%;
       }
 
       .test-btn {
         background: #17a2b8;
         color: white;
         border: none;
-        padding: 10px 20px;
+        padding: 12px 24px;
         border-radius: 5px;
         cursor: pointer;
         font-weight: bold;
         transition: all 0.3s ease;
+        font-size: 0.9rem;
+        white-space: nowrap;
       }
 
       .test-btn:hover {
@@ -114,12 +128,13 @@
       }
 
       .response {
+        grid-column: 1 / -1;
         margin-top: 10px;
         padding: 10px;
         background: #f1f3f4;
         border-radius: 5px;
         font-family: "Courier New", monospace;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         max-height: 200px;
         overflow-y: auto;
         display: none;
@@ -133,19 +148,23 @@
       }
 
       .description {
-        margin: 10px 0;
+        grid-column: 1 / -1;
         color: #666;
         font-style: italic;
+        font-size: 0.9rem;
+        margin: 5px 0;
       }
 
       .json-body {
+        grid-column: 1 / -1;
         background: #2d3748;
         color: #a0aec0;
-        padding: 15px;
+        padding: 12px;
         border-radius: 5px;
-        margin: 10px 0;
         font-family: "Courier New", monospace;
+        font-size: 0.85rem;
         white-space: pre-wrap;
+        overflow-x: auto;
       }
 
       .test-all-btn {
@@ -419,9 +438,29 @@
           // Add body for POST/PUT requests
           if ((method === "POST" || method === "PUT") && jsonBody) {
             let bodyText = jsonBody.textContent.trim();
+            // Remove all newlines and extra whitespace
+            bodyText = bodyText.replace(/\s+/g, " ").trim();
             // Replace timestamp placeholder with actual timestamp
             bodyText = bodyText.replace(/\{\{timestamp\}\}/g, Date.now());
-            requestOptions.body = bodyText;
+
+            // Debug: Log the JSON being sent
+            console.log("Sending JSON:", bodyText);
+
+            // Validate JSON before sending
+            try {
+              JSON.parse(bodyText);
+              requestOptions.body = bodyText;
+            } catch (e) {
+              console.error("Invalid JSON:", e, "Body:", bodyText);
+              responseDiv.innerHTML = `
+                <strong>❌ Invalid JSON Format</strong><br>
+                <pre>Error: ${e.message}</pre>
+                <pre>Body: ${bodyText}</pre>
+              `;
+              button.textContent = "Test";
+              button.disabled = false;
+              return;
+            }
           }
 
           const startTime = Date.now();

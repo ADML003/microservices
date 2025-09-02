@@ -72,3 +72,21 @@ GET: Fetching student with ID: 2
 POST: Creating new student: Test Student
 PUT: Updating student with ID: 19
 2025-09-02T17:34:20.818+05:30  WARN 76562 --- [student-service] [nio-8585-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Illegal unquoted character ((CTRL-CHAR, code 10)): has to be escaped using backslash to be included in string value]
+GET: Fetching all students
+GET: Fetching student with ID: 1
+2025-09-02T17:35:27.673+05:30  WARN 76562 --- [student-service] [nio-8585-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Illegal unquoted character ((CTRL-CHAR, code 10)): has to be escaped using backslash to be included in string value]
+2025-09-02T17:35:28.188+05:30  WARN 76562 --- [student-service] [nio-8585-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Illegal unquoted character ((CTRL-CHAR, code 10)): has to be escaped using backslash to be included in string value]
+DELETE: Deleting student with ID: 999
+POST: Creating new student: J vfvf
+Error creating student: PreparedStatementCallback; Duplicate entry 'joh@example.com' for key 'students.email'
+POST: Creating new student: J vfvf
+POST: Creating new student: J vfvf
+POST: Creating new student: J vfvf
+PUT: Updating student with ID: 2
+POST: Creating new student: Test Student
+GET: Fetching all students
+GET: Fetching student with ID: 1
+POST: Creating new student: Test Student
+PUT: Updating student with ID: 1
+DELETE: Deleting student with ID: 999
+GET: Fetching all students
