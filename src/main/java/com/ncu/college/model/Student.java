@@ -1,10 +1,13 @@
 package com.ncu.college.model;
 
 public class Student {
+    
     private Long id;
     private String name;
     private String email;
     private Integer age;
+    private String address;
+    private String phoneNumber;
     
     // Default constructor
     public Student() {}
@@ -48,6 +51,22 @@ public class Student {
     
     public void setAge(Integer age) {
         this.age = age;
+    }
+    
+    public String getAddress() {
+        return address;
+    }
+    
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     
     @Override

@@ -21,12 +21,8 @@ import com.ncu.college.service.IStudentService;
 @RestController
 public class StudentController {
 
-    private final IStudentService studentService;
-
     @Autowired
-    public StudentController(IStudentService studentService) {
-        this.studentService = studentService;
-    }
+    private IStudentService studentService;
 
     // GET - Get all students
     @GetMapping
@@ -61,7 +57,7 @@ public class StudentController {
     public ResponseEntity<StudentDto> createStudent(@RequestBody StudentDto studentDto) {
         try {
             System.out.println("POST: Creating new student: " + studentDto.getName());
-            StudentDto createdStudent = studentService.createStudent(studentDto);
+            StudentDto createdStudent = studentService.saveStudent(studentDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
         } catch (Exception e) {
             System.err.println("Error creating student: " + e.getMessage());
@@ -99,18 +95,8 @@ public class StudentController {
         }
     }
 
-    // DELETE - Clear all students
-    @DeleteMapping
-    public ResponseEntity<String> clearAllStudents() {
-        try {
-            System.out.println("DELETE: Clearing all students");
-            studentService.deleteAllStudents();
-            return ResponseEntity.ok("All students have been cleared successfully.");
-        } catch (Exception e) {
-            System.err.println("Error clearing students: " + e.getMessage());
-            throw new RuntimeException("Error clearing students", e);
-        }
-    }
+        // Note: deleteAllStudents method removed for simplicity
+    // Individual student deletion available via DELETE /{id}
 
     // Simple Student class
     public static class Student {

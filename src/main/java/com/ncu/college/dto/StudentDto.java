@@ -5,6 +5,8 @@ public class StudentDto {
     private String name;
     private String email;
     private Integer age;
+    private String address;
+    private String phoneNumber;
     
     // Default constructor
     public StudentDto() {}
@@ -48,6 +50,22 @@ public class StudentDto {
     
     public void setAge(Integer age) {
         this.age = age;
+    }
+    
+    public String getAddress() {
+        return address;
+    }
+    
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     
     @Override

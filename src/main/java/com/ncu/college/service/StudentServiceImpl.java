@@ -3,133 +3,95 @@ package com.ncu.college.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-
 import com.ncu.college.dto.StudentDto;
 import com.ncu.college.model.Student;
-import com.ncu.college.repository.IStudentRepository;
+import com.ncu.college.repository.StudentRepository;
 
-@Service(value = "StudentService")
-@Scope(value = BeanDefinition.SCOPE_SINGLETON)
+@Service
 public class StudentServiceImpl implements IStudentService {
     
-    private final IStudentRepository studentRepository;
-    private final ModelMapper modelMapper;
-    
     @Autowired
-    public StudentServiceImpl(IStudentRepository studentRepository, ModelMapper modelMapper) {
-        this.studentRepository = studentRepository;
-        this.modelMapper = modelMapper;
-    }
+    private StudentRepository studentRepository;
     
     @Override
     public List<StudentDto> getAllStudents() {
-        try {
-            List<Student> students = studentRepository.getAllStudents();
-            return students.stream()
-                    .map(student -> modelMapper.map(student, StudentDto.class))
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            System.err.println("Error in service while fetching all students: " + e.getMessage());
-            throw new RuntimeException("Error fetching students", e);
-        }
+        List<Student> students = studentRepository.findAll();
+        return students.stream().map(this::convertToDto).collect(Collectors.toList());
     }
     
     @Override
     public StudentDto getStudentById(Long id) {
-        try {
-            Optional<Student> student = studentRepository.getStudentById(id);
-            if (student.isPresent()) {
-                return modelMapper.map(student.get(), StudentDto.class);
-            } else {
-                throw new RuntimeException("Student not found with ID: " + id);
-            }
-        } catch (Exception e) {
-            System.err.println("Error in service while fetching student by ID " + id + ": " + e.getMessage());
-            throw new RuntimeException("Error fetching student by ID", e);
-        }
+        Optional<Student> student = studentRepository.findById(id);
+        return student.map(this::convertToDto).orElse(null);
     }
     
     @Override
-    public StudentDto createStudent(StudentDto studentDto) {
-        try {
-            // Convert DTO to entity
-            Student student = modelMapper.map(studentDto, Student.class);
-            student.setId(null); // Ensure new student gets auto-generated ID
-            
-            // Save student
-            Student savedStudent = studentRepository.saveStudent(student);
-            
-            // Convert back to DTO and return
-            return modelMapper.map(savedStudent, StudentDto.class);
-        } catch (Exception e) {
-            System.err.println("Error in service while creating student: " + e.getMessage());
-            throw new RuntimeException("Error creating student", e);
-        }
+    public StudentDto saveStudent(StudentDto studentDto) {
+        Student student = convertToEntity(studentDto);
+        Student savedStudent = studentRepository.save(student);
+        return convertToDto(savedStudent);
     }
     
     @Override
     public StudentDto updateStudent(Long id, StudentDto studentDto) {
-        try {
-            // Check if student exists
-            Optional<Student> existingStudent = studentRepository.getStudentById(id);
-            if (!existingStudent.isPresent()) {
-                throw new RuntimeException("Student not found with ID: " + id);
-            }
-            
-            // Convert DTO to entity and set the ID
-            Student student = modelMapper.map(studentDto, Student.class);
-            student.setId(id);
-            
-            // Save updated student
-            Student savedStudent = studentRepository.saveStudent(student);
-            
-            // Convert back to DTO and return
-            return modelMapper.map(savedStudent, StudentDto.class);
-        } catch (Exception e) {
-            System.err.println("Error in service while updating student with ID " + id + ": " + e.getMessage());
-            throw new RuntimeException("Error updating student", e);
+        Optional<Student> existingStudent = studentRepository.findById(id);
+        if (existingStudent.isPresent()) {
+            Student student = existingStudent.get();
+            student.setName(studentDto.getName());
+            student.setEmail(studentDto.getEmail());
+            student.setAge(studentDto.getAge());
+            student.setAddress(studentDto.getAddress());
+            student.setPhoneNumber(studentDto.getPhoneNumber());
+            Student savedStudent = studentRepository.save(student);
+            return convertToDto(savedStudent);
         }
+        return null;
     }
     
     @Override
     public void deleteStudent(Long id) {
-        try {
-            // Check if student exists before deleting
-            Optional<Student> existingStudent = studentRepository.getStudentById(id);
-            if (!existingStudent.isPresent()) {
-                throw new RuntimeException("Student not found with ID: " + id);
-            }
-            
-            studentRepository.deleteStudent(id);
-        } catch (Exception e) {
-            System.err.println("Error in service while deleting student with ID " + id + ": " + e.getMessage());
-            throw new RuntimeException("Error deleting student", e);
-        }
+        studentRepository.deleteById(id);
     }
     
     @Override
-    public void deleteAllStudents() {
-        try {
-            studentRepository.deleteAllStudents();
-        } catch (Exception e) {
-            System.err.println("Error in service while deleting all students: " + e.getMessage());
-            throw new RuntimeException("Error deleting all students", e);
-        }
+    public List<StudentDto> findStudentsByAge(Integer minAge, Integer maxAge) {
+        List<Student> students = studentRepository.findByAgeBetween(minAge, maxAge);
+        return students.stream().map(this::convertToDto).collect(Collectors.toList());
     }
     
     @Override
-    public Long getStudentCount() {
-        try {
-            return studentRepository.getStudentCount();
-        } catch (Exception e) {
-            System.err.println("Error in service while getting student count: " + e.getMessage());
-            throw new RuntimeException("Error getting student count", e);
-        }
+    public List<StudentDto> searchStudentsByName(String name) {
+        List<Student> students = studentRepository.findByNameContainingIgnoreCase(name);
+        return students.stream().map(this::convertToDto).collect(Collectors.toList());
+    }
+    
+    @Override
+    public StudentDto findStudentByEmail(String email) {
+        Optional<Student> student = studentRepository.findByEmail(email);
+        return student.map(this::convertToDto).orElse(null);
+    }
+    
+    private StudentDto convertToDto(Student student) {
+        StudentDto dto = new StudentDto();
+        dto.setId(student.getId());
+        dto.setName(student.getName());
+        dto.setEmail(student.getEmail());
+        dto.setAge(student.getAge());
+        dto.setAddress(student.getAddress());
+        dto.setPhoneNumber(student.getPhoneNumber());
+        return dto;
+    }
+    
+    private Student convertToEntity(StudentDto dto) {
+        Student student = new Student();
+        student.setId(dto.getId());
+        student.setName(dto.getName());
+        student.setEmail(dto.getEmail());
+        student.setAge(dto.getAge());
+        student.setAddress(dto.getAddress());
+        student.setPhoneNumber(dto.getPhoneNumber());
+        return student;
     }
 }

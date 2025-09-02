@@ -17,7 +17,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ studentservice ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 10 source files with javac [debug parameters release 22] to target/classes
+[INFO] Compiling 9 source files with javac [debug parameters release 22] to target/classes
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ studentservice ---
 [INFO] skip non existing resourceDirectory /Users/ADML/Desktop/microservices /src/test/resources
@@ -40,45 +40,45 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 
  :: Spring Boot ::                (v3.5.3)
 
-2025-08-26T17:05:34.950+05:30  INFO 34168 --- [demo-app] [           main] com.ncu.college.DemoServiceApplication   : Starting DemoServiceApplication using Java 24.0.2 with PID 34168 (/Users/ADML/Desktop/microservices /target/classes started by ADML in /Users/ADML/Desktop/microservices )
-2025-08-26T17:05:34.952+05:30  INFO 34168 --- [demo-app] [           main] com.ncu.college.DemoServiceApplication   : No active profile set, falling back to 1 default profile: "default"
-2025-08-26T17:05:35.749+05:30  INFO 34168 --- [demo-app] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8585 (http)
-2025-08-26T17:05:35.766+05:30  INFO 34168 --- [demo-app] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-08-26T17:05:35.766+05:30  INFO 34168 --- [demo-app] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-08-26T17:05:35.812+05:30  INFO 34168 --- [demo-app] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-08-26T17:05:35.813+05:30  INFO 34168 --- [demo-app] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 821 ms
+2025-09-02T16:09:04.401+05:30  INFO 44654 --- [student-service] [           main] com.ncu.college.DemoServiceApplication   : Starting DemoServiceApplication using Java 24.0.2 with PID 44654 (/Users/ADML/Desktop/microservices /target/classes started by ADML in /Users/ADML/Desktop/microservices )
+2025-09-02T16:09:04.403+05:30  INFO 44654 --- [student-service] [           main] com.ncu.college.DemoServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-09-02T16:09:05.040+05:30  INFO 44654 --- [student-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-02T16:09:05.099+05:30  INFO 44654 --- [student-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 1 JPA repository interface.
+2025-09-02T16:09:05.650+05:30  INFO 44654 --- [student-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8585 (http)
+2025-09-02T16:09:05.669+05:30  INFO 44654 --- [student-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-02T16:09:05.669+05:30  INFO 44654 --- [student-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-09-02T16:09:05.720+05:30  INFO 44654 --- [student-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-02T16:09:05.720+05:30  INFO 44654 --- [student-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1245 ms
+2025-09-02T16:09:05.922+05:30  INFO 44654 --- [student-service] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-02T16:09:05.979+05:30  INFO 44654 --- [student-service] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-09-02T16:09:06.013+05:30  INFO 44654 --- [student-service] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-02T16:09:06.341+05:30  INFO 44654 --- [student-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-02T16:09:06.371+05:30  INFO 44654 --- [student-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-02T16:09:06.916+05:30  INFO 44654 --- [student-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7adae08e
+2025-09-02T16:09:06.917+05:30  INFO 44654 --- [student-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-02T16:09:06.977+05:30  WARN 44654 --- [student-service] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-02T16:09:06.997+05:30  INFO 44654 --- [student-service] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 9.4
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-09-02T16:09:07.854+05:30  INFO 44654 --- [student-service] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-02T16:09:07.904+05:30  INFO 44654 --- [student-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-02T16:09:08.224+05:30  INFO 44654 --- [student-service] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
 WARNING: sun.misc.Unsafe::staticFieldOffset has been called by org.modelmapper.internal.typetools.TypeResolver (file:/Users/ADML/.m2/repository/org/modelmapper/modelmapper/3.2.0/modelmapper-3.2.0.jar)
 WARNING: Please consider reporting this to the maintainers of class org.modelmapper.internal.typetools.TypeResolver
 WARNING: sun.misc.Unsafe::staticFieldOffset will be removed in a future release
-2025-08-26T17:05:36.198+05:30  WARN 34168 --- [demo-app] [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2025-08-26T17:05:36.211+05:30  INFO 34168 --- [demo-app] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-08-26T17:05:36.233+05:30 ERROR 34168 --- [demo-app] [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8585 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8585 or configure this application to listen on another port.
-
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  3.803 s
-[INFO] Finished at: 2025-08-26T17:05:36+05:30
-[INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.3:run (default-cli) on project studentservice: Process terminated with exit code: 1 -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+2025-09-02T16:09:09.174+05:30  INFO 44654 --- [student-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8585 (http) with context path '/'
+2025-09-02T16:09:09.183+05:30  INFO 44654 --- [student-service] [           main] com.ncu.college.DemoServiceApplication   : Started DemoServiceApplication in 5.301 seconds (process running for 5.708)
+2025-09-02T16:10:53.329+05:30  INFO 44654 --- [student-service] [nio-8585-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-02T16:10:53.330+05:30  INFO 44654 --- [student-service] [nio-8585-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-02T16:10:53.331+05:30  INFO 44654 --- [student-service] [nio-8585-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-09-02T16:11:55.893+05:30  INFO 44654 --- [student-service] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-02T16:11:55.902+05:30  INFO 44654 --- [student-service] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-02T16:11:55.905+05:30  INFO 44654 --- [student-service] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-02T16:11:55.909+05:30  INFO 44654 --- [student-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-02T16:11:55.913+05:30  INFO 44654 --- [student-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

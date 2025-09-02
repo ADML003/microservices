@@ -10,13 +10,15 @@ public interface IStudentService {
     
     StudentDto getStudentById(Long id);
     
-    StudentDto createStudent(StudentDto studentDto);
+    StudentDto saveStudent(StudentDto studentDto);
     
     StudentDto updateStudent(Long id, StudentDto studentDto);
     
     void deleteStudent(Long id);
     
-    void deleteAllStudents();
+    List<StudentDto> findStudentsByAge(Integer minAge, Integer maxAge);
     
-    Long getStudentCount();
+    List<StudentDto> searchStudentsByName(String name);
+    
+    StudentDto findStudentByEmail(String email);
 }
