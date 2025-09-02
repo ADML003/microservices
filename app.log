@@ -90,3 +90,15 @@ POST: Creating new student: Test Student
 PUT: Updating student with ID: 1
 DELETE: Deleting student with ID: 999
 GET: Fetching all students
+GET: Fetching all students
+GET: Fetching student with ID: 1
+POST: Creating new student: Test Student
+PUT: Updating student with ID: 1
+DELETE: Deleting student with ID: 999
+PUT: Updating student with ID: 2
+GET: Fetching student with ID: 2
+GET: Fetching all students
+2025-09-02T17:55:08.503+05:30  INFO 76562 --- [student-service] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-02T17:55:08.547+05:30  INFO 76562 --- [student-service] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-02T17:55:08.575+05:30  INFO 76562 --- [student-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-02T17:55:08.589+05:30  INFO 76562 --- [student-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
