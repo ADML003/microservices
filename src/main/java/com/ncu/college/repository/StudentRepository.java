@@ -1,11 +1,15 @@
 package com.ncu.college.repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.ncu.college.model.Student;
@@ -46,8 +50,31 @@ public class StudentRepository {
         if (student.getId() == null) {
             // Insert new student
             String sql = "INSERT INTO students (name, email, age, address, phone_number) VALUES (?, ?, ?, ?, ?)";
-            jdbcTemplate.update(sql, student.getName(), student.getEmail(), student.getAge(), 
-                              student.getAddress(), student.getPhoneNumber());
+            
+            // Use KeyHolder to get the generated ID
+            KeyHolder keyHolder = new GeneratedKeyHolder();
+            
+            jdbcTemplate.update(connection -> {
+                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, student.getName());
+                ps.setString(2, student.getEmail());
+                Integer age = student.getAge();
+                if (age != null) {
+                    ps.setInt(3, age.intValue());
+                } else {
+                    ps.setNull(3, java.sql.Types.INTEGER);
+                }
+                ps.setString(4, student.getAddress());
+                ps.setString(5, student.getPhoneNumber());
+                return ps;
+            }, keyHolder);
+            
+            // Set the generated ID
+            Number key = keyHolder.getKey();
+            if (key != null) {
+                student.setId(Long.valueOf(key.longValue()));
+            }
+            
             return student;
         } else {
             // Update existing student

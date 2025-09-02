@@ -1,3 +1,4 @@
+com/ncu/college/config/CorsConfig.class
 com/ncu/college/service/StudentServiceImpl.class
 com/ncu/college/controller/StudentController$Student.class
 com/ncu/college/repository/StudentRepository.class

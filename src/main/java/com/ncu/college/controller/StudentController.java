@@ -59,6 +59,13 @@ public class StudentController {
             System.out.println("POST: Creating new student: " + studentDto.getName());
             StudentDto createdStudent = studentService.saveStudent(studentDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
+        } catch (RuntimeException e) {
+            System.err.println("Error creating student: " + e.getMessage());
+            if (e.getMessage().contains("Duplicate entry") && e.getMessage().contains("email")) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(null); // Could return error details in a proper error DTO
+            }
+            throw e;
         } catch (Exception e) {
             System.err.println("Error creating student: " + e.getMessage());
             throw new RuntimeException("Error creating student", e);

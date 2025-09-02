@@ -17,7 +17,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ studentservice ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 10 source files with javac [debug parameters release 22] to target/classes
+[INFO] Compiling 11 source files with javac [debug parameters release 22] to target/classes
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ studentservice ---
 [INFO] skip non existing resourceDirectory /Users/ADML/Desktop/microservices /src/test/resources
@@ -40,21 +40,21 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 
  :: Spring Boot ::                (v3.5.3)
 
-2025-09-02T17:06:11.465+05:30  INFO 68580 --- [student-service] [           main] com.ncu.college.DemoServiceApplication   : Starting DemoServiceApplication using Java 24.0.2 with PID 68580 (/Users/ADML/Desktop/microservices /target/classes started by ADML in /Users/ADML/Desktop/microservices )
-2025-09-02T17:06:11.491+05:30  INFO 68580 --- [student-service] [           main] com.ncu.college.DemoServiceApplication   : No active profile set, falling back to 1 default profile: "default"
-2025-09-02T17:06:12.551+05:30  INFO 68580 --- [student-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8585 (http)
-2025-09-02T17:06:12.571+05:30  INFO 68580 --- [student-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-02T17:06:12.571+05:30  INFO 68580 --- [student-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-09-02T17:06:12.622+05:30  INFO 68580 --- [student-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-02T17:06:12.623+05:30  INFO 68580 --- [student-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1047 ms
-2025-09-02T17:06:12.737+05:30  INFO 68580 --- [student-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-02T17:06:13.265+05:30  INFO 68580 --- [student-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@518ddd3b
-2025-09-02T17:06:13.267+05:30  INFO 68580 --- [student-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-02T17:06:13.731+05:30  INFO 68580 --- [student-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8585 (http) with context path '/'
-2025-09-02T17:06:13.740+05:30  INFO 68580 --- [student-service] [           main] com.ncu.college.DemoServiceApplication   : Started DemoServiceApplication in 2.774 seconds (process running for 3.148)
-2025-09-02T17:06:14.118+05:30  INFO 68580 --- [student-service] [nio-8585-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-02T17:06:14.118+05:30  INFO 68580 --- [student-service] [nio-8585-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-02T17:06:14.119+05:30  INFO 68580 --- [student-service] [nio-8585-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-09-02T17:28:24.045+05:30  INFO 76562 --- [student-service] [           main] com.ncu.college.DemoServiceApplication   : Starting DemoServiceApplication using Java 24.0.2 with PID 76562 (/Users/ADML/Desktop/microservices /target/classes started by ADML in /Users/ADML/Desktop/microservices )
+2025-09-02T17:28:24.050+05:30  INFO 76562 --- [student-service] [           main] com.ncu.college.DemoServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-09-02T17:28:25.260+05:30  INFO 76562 --- [student-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8585 (http)
+2025-09-02T17:28:25.280+05:30  INFO 76562 --- [student-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-02T17:28:25.280+05:30  INFO 76562 --- [student-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-09-02T17:28:25.333+05:30  INFO 76562 --- [student-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-02T17:28:25.334+05:30  INFO 76562 --- [student-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1211 ms
+2025-09-02T17:28:25.460+05:30  INFO 76562 --- [student-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-02T17:28:25.995+05:30  INFO 76562 --- [student-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7c20cdd0
+2025-09-02T17:28:25.997+05:30  INFO 76562 --- [student-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-02T17:28:26.424+05:30  INFO 76562 --- [student-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8585 (http) with context path '/'
+2025-09-02T17:28:26.435+05:30  INFO 76562 --- [student-service] [           main] com.ncu.college.DemoServiceApplication   : Started DemoServiceApplication in 2.925 seconds (process running for 3.342)
+2025-09-02T17:28:29.137+05:30  INFO 76562 --- [student-service] [nio-8585-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-02T17:28:29.138+05:30  INFO 76562 --- [student-service] [nio-8585-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-02T17:28:29.139+05:30  INFO 76562 --- [student-service] [nio-8585-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 GET: Fetching all students
-GET: Fetching all students
-GET: Fetching all students
+POST: Creating new student: Duplicate Test
+Error creating student: PreparedStatementCallback; Duplicate entry 'debug@example.com' for key 'students.email'
