@@ -1,0 +1,358 @@
+{
+  "info": {
+    "name": "Microservices API Collection",
+    "description": "Complete API testing collection for the microservices application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Database Tests",
+      "item": [
+        {
+          "name": "Test SQL Connection",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8585/test/sql-connection",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["test", "sql-connection"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Database Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8585/test/database-info",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["test", "database-info"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Students Direct",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8585/test/students-direct",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["test", "students-direct"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Main Student Service (8585)",
+      "item": [
+        {
+          "name": "Get All Students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8585/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Student by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8585/students/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create New Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Test Student\",\n    \"email\": \"test@example.com\",\n    \"age\": 25,\n    \"address\": \"123 Test Street\",\n    \"phoneNumber\": \"+1234567890\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8585/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Student",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Updated Student\",\n    \"email\": \"updated@example.com\",\n    \"age\": 26,\n    \"address\": \"456 Updated Street\",\n    \"phoneNumber\": \"+1234567891\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8585/students/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Student",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8585/students/999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students", "999"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Student Service (9001)",
+      "item": [
+        {
+          "name": "Basic Student Endpoint",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9001/students/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9001",
+              "path": ["students", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Student by Name (Path)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9001/students/student/John",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9001",
+              "path": ["students", "student", "John"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Student by Name (Query)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9001/students/student?studentname=Alice",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9001",
+              "path": ["students", "student"],
+              "query": [
+                {
+                  "key": "studentname",
+                  "value": "Alice"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Teacher Service (9002)",
+      "item": [
+        {
+          "name": "Basic Teacher Endpoint",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9002/teachers/getTeacher",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9002",
+              "path": ["teachers", "getTeacher"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Teacher by Name (Path)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9002/teachers/getTeacher/ProfSmith",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9002",
+              "path": ["teachers", "getTeacher", "ProfSmith"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Teacher by Name (Query)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9002/teachers/teacher?teacherName=ProfJohnson",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9002",
+              "path": ["teachers", "teacher"],
+              "query": [
+                {
+                  "key": "teacherName",
+                  "value": "ProfJohnson"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Course Service (9002)",
+      "item": [
+        {
+          "name": "Get All Courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9002/course/allcourses",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9002",
+              "path": ["course", "allcourses"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Courses with Parameter",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9002/course/allcourses?param=mathematics",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9002",
+              "path": ["course", "allcourses"],
+              "query": [
+                {
+                  "key": "param",
+                  "value": "mathematics"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Curriculum Service (9003)",
+      "item": [
+        {
+          "name": "Get All Curriculum",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9003/curriculum/all",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9003",
+              "path": ["curriculum", "all"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.test(\"Status code is successful\", function () {",
+          "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);",
+          "});",
+          "",
+          "pm.test(\"Response time is less than 1000ms\", function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});",
+          "",
+          "pm.test(\"Content-Type is present\", function () {",
+          "    pm.response.to.have.header(\"Content-Type\");",
+          "});"
+        ]
+      }
+    }
+  ]
+}

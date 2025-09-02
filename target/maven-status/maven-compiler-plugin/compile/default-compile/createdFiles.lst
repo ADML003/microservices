@@ -7,3 +7,4 @@ com/ncu/college/controller/StudentController.class
 com/ncu/college/dto/StudentDto.class
 com/ncu/college/DemoServiceApplication.class
 com/ncu/college/model/Student.class
+com/ncu/college/config/ApplicationConfig.class
