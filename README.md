@@ -18,7 +18,13 @@ A complete microservices architecture with 4 independent services, each with its
 ./setup_microservices.sh
 ```
 
-### 2. Start Services (in separate terminals)
+### 2. Start All Services (Automated)
+```bash
+# Start all 4 microservices automatically
+./start_all_services.sh
+```
+
+**OR** Start Services Manually (in separate terminals):
 ```bash
 # Terminal 1 - Student Service
 cd student-service && mvn spring-boot:run
@@ -33,16 +39,28 @@ cd teacher-service && mvn spring-boot:run
 cd enrollment-service && mvn spring-boot:run
 ```
 
-### 3. Test APIs
+### 3. Test Interconnectivity
 ```bash
-# Test all services
-curl http://localhost:8585/students
-curl http://localhost:8586/courses
-curl http://localhost:8587/teachers
-curl http://localhost:8588/enrollments
+# Test all services and their communication
+./test_interconnectivity.sh
 ```
 
-## 🔄 Inter-Service Communication
+### 4. Stop All Services
+```bash
+# Stop all microservices gracefully
+./stop_all_services.sh
+```
+
+## �️ Management Scripts
+
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| `setup_microservices.sh` | Setup databases | `./setup_microservices.sh` |
+| `start_all_services.sh` | Start all 4 services automatically | `./start_all_services.sh` |
+| `test_interconnectivity.sh` | Test service communication | `./test_interconnectivity.sh` |
+| `stop_all_services.sh` | Stop all services gracefully | `./stop_all_services.sh` |
+
+## �🔄 Inter-Service Communication
 
 The Enrollment Service orchestrates communication between all other services:
 - Creates enrollments linking students, courses, and teachers
