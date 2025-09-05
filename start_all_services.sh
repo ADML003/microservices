@@ -77,6 +77,21 @@ check_port() {
     fi
 }
 
+# Function to kill process on port if needed
+free_port() {
+    local port=$1
+    if lsof -ti:$port >/dev/null 2>&1; then
+        print_warning "Port $port is in use. Stopping existing process..."
+        lsof -ti:$port | xargs kill 2>/dev/null || true
+        sleep 2
+        if lsof -ti:$port >/dev/null 2>&1; then
+            print_warning "Force killing process on port $port..."
+            lsof -ti:$port | xargs kill -9 2>/dev/null || true
+            sleep 1
+        fi
+    fi
+}
+
 # Function to wait for service to start
 wait_for_service() {
     local service_name=$1
@@ -88,7 +103,10 @@ wait_for_service() {
     
     while [ $attempt -lt $max_attempts ]; do
         if curl -s -f http://localhost:$port/actuator/health >/dev/null 2>&1 || 
-           curl -s -f http://localhost:$port/${service_name,,}s >/dev/null 2>&1; then
+           curl -s -f http://localhost:$port/students >/dev/null 2>&1 ||
+           curl -s -f http://localhost:$port/courses >/dev/null 2>&1 ||
+           curl -s -f http://localhost:$port/teachers >/dev/null 2>&1 ||
+           curl -s -f http://localhost:$port/enrollments >/dev/null 2>&1; then
             print_success "$service_name is ready!"
             return 0
         fi
@@ -113,13 +131,19 @@ start_service() {
     
     # Check if port is available
     if ! check_port $port; then
-        print_error "Port $port is already in use! Please stop the existing service."
-        return 1
+        print_warning "Port $port is already in use!"
+        free_port $port
+        if ! check_port $port; then
+            print_error "Unable to free port $port. Please manually stop the process."
+            print_status "You can run: lsof -ti:$port | xargs kill"
+            return 1
+        fi
+        print_success "Port $port is now available"
     fi
     
     # Start the service
     cd "$directory"
-    nohup mvn spring-boot:run > "../${service_name,,}_service.log" 2>&1 &
+    nohup mvn spring-boot:run > "../${service_name}_service.log" 2>&1 &
     local pid=$!
     echo $pid > "../$pid_file"
     cd ..
@@ -150,6 +174,24 @@ if ! command -v java &> /dev/null; then
 fi
 
 print_success "Prerequisites check passed"
+
+# Clean up any existing processes and PID files
+print_status "Cleaning up any existing services..."
+cleanup_existing_services() {
+    for port in 8585 8586 8587 8588; do
+        if lsof -ti:$port >/dev/null 2>&1; then
+            print_warning "Found existing process on port $port, stopping it..."
+            lsof -ti:$port | xargs kill 2>/dev/null || true
+            sleep 1
+        fi
+    done
+    
+    # Remove any existing PID files
+    rm -f .student_pid .course_pid .teacher_pid .enrollment_pid
+    print_success "Cleanup completed"
+}
+
+cleanup_existing_services
 
 # Check if MySQL is running
 print_status "Checking MySQL connection..."
@@ -234,10 +276,10 @@ echo ""
 # Show log files
 echo -e "${BLUE}📋 LOG FILES${NC}"
 echo -e "${BLUE}=============${NC}"
-echo "Student Service:   student_service.log"
-echo "Course Service:    course_service.log"
-echo "Teacher Service:   teacher_service.log"  
-echo "Enrollment Service: enrollment_service.log"
+echo "Student Service:   Student_service.log"
+echo "Course Service:    Course_service.log"
+echo "Teacher Service:   Teacher_service.log"  
+echo "Enrollment Service: Enrollment_service.log"
 echo ""
 
 # Quick test commands

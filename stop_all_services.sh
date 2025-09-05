@@ -114,7 +114,7 @@ fi
 
 # Clean up log files
 print_status "Cleaning up log files..."
-rm -f student_service.log course_service.log teacher_service.log enrollment_service.log
+rm -f Student_service.log Course_service.log Teacher_service.log Enrollment_service.log
 
 echo ""
 print_success "🎉 Stopped $services_stopped microservices"
