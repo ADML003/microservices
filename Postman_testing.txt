@@ -9,3 +9,40 @@ GET/PUT/DELETE http://localhost:8080/api/students/{id}
 
 GET/POST    http://localhost:8080/api/enrollments
 GET/PUT/DELETE http://localhost:8080/api/enrollments/{id}
+
+
+
+
+
+
+🚨 Database Constraints & Validation Rules for All Services
+👨‍🎓 STUDENT SERVICE Constraints:
+✅ ID: Auto-generated (don't send in POST)
+❌ Email: Must be UNIQUE - no duplicate emails allowed
+✅ Name: Can be duplicate
+✅ Phone: Can be duplicate
+✅ Age: Any valid integer
+✅ Address: Can be duplicate
+❌ Will Fail: {"email": "john@example.com"} (already exists) ✅ Will Work: {"email": "unique123@example.com"}
+👨‍🏫 TEACHER SERVICE Constraints:
+✅ ID: Auto-generated (don't send in POST)
+✅ Name: Can be duplicate
+✅ Email: Can be duplicate
+✅ Department: Can be duplicate
+✅ TeacherId: Optional field, can be null
+✅ No major constraints - Most fields can be duplicated
+
+📚 COURSE SERVICE Constraints:
+✅ CourseId: Auto-generated (don't send in POST)
+✅ Name: Can be duplicate
+✅ Credits: Any valid integer
+✅ Description: Can be duplicate
+✅ No major constraints - All fields can be duplicated
+
+📝 ENROLLMENT SERVICE Constraints:
+✅ ID: Auto-generated (don't send in POST)
+❌ Duplicate Enrollment: Same student CANNOT enroll in same course twice
+✅ CourseId: Must reference existing course
+✅ StudentId: Must reference existing student
+✅ TeacherId: Must reference existing teacher
+✅ Status: Can be "ACTIVE", "COMPLETED", "DROPPED", etc.
