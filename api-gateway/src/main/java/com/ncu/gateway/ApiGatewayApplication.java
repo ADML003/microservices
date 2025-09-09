@@ -1,15 +1,13 @@
-package com.ncu.student;
+package com.ncu.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = "com.ncu.student")
-public class StudentServiceApplication {
+public class ApiGatewayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(StudentServiceApplication.class, args);
+        SpringApplication.run(ApiGatewayApplication.class, args);
     }
 }
