@@ -33,18 +33,10 @@ public class TeacherServiceImpl implements ITeacherService {
         if (teacherDto.getName() == null || teacherDto.getName().trim().isEmpty()) {
             throw new IllegalArgumentException("Teacher name is required");
         }
-        if (teacherDto.getTeacherId() == null || teacherDto.getTeacherId().trim().isEmpty()) {
-            throw new IllegalArgumentException("Teacher ID is required");
-        }
-
-        // Check if teacher ID already exists
-        if (teacherRepository.existsByTeacherId(teacherDto.getTeacherId())) {
-            throw new IllegalArgumentException("Teacher ID already exists: " + teacherDto.getTeacherId());
-        }
 
         Teacher teacher = new Teacher();
         teacher.setName(teacherDto.getName());
-        teacher.setTeacherId(teacherDto.getTeacherId());
+        teacher.setTeacherId(teacherDto.getTeacherId()); // Can be null
         teacher.setDepartment(teacherDto.getDepartment());
         teacher.setEmail(teacherDto.getEmail());
         teacher.setPhone(teacherDto.getPhone());

@@ -74,7 +74,10 @@ public class StudentServiceImpl implements IStudentService {
     // Helper method to convert StudentDto to Student entity
     private Student convertToEntity(StudentDto dto) {
         Student student = new Student();
-        student.setId(dto.getId());
+        // Don't set ID for new students - it will be auto-generated
+        if (dto.getId() != null) {
+            student.setId(dto.getId());
+        }
         student.setName(dto.getName());
         student.setEmail(dto.getEmail());
         student.setAge(dto.getAge());

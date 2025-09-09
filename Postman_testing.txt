@@ -1,0 +1,11 @@
+GET/POST    http://localhost:8080/api/teachers
+GET/PUT/DELETE http://localhost:8080/api/teachers/{id}
+
+GET/POST    http://localhost:8080/api/courses  
+GET/PUT/DELETE http://localhost:8080/api/courses/{id}
+
+GET/POST    http://localhost:8080/api/students
+GET/PUT/DELETE http://localhost:8080/api/students/{id}
+
+GET/POST    http://localhost:8080/api/enrollments
+GET/PUT/DELETE http://localhost:8080/api/enrollments/{id}
