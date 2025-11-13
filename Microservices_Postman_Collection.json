@@ -1,0 +1,531 @@
+{
+  "info": {
+    "_postman_id": "microservices-collection-2025",
+    "name": "Microservices Complete Collection",
+    "description": "Complete testing collection for all 6 microservices",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Config Server",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8888/actuator/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8888",
+              "path": ["actuator", "health"]
+            }
+          }
+        },
+        {
+          "name": "Get Student Service Config",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8888/student-service/default",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8888",
+              "path": ["student-service", "default"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Auth Service",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8589/auth/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8589",
+              "path": ["auth", "health"]
+            }
+          }
+        },
+        {
+          "name": "User Signup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8589/auth/signup",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8589",
+              "path": ["auth", "signup"]
+            }
+          }
+        },
+        {
+          "name": "User Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8589/auth/authenticate",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8589",
+              "path": ["auth", "authenticate"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Student Service (YOUR MAIN SERVICE)",
+      "item": [
+        {
+          "name": "Get All Students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8585/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students"]
+            }
+          }
+        },
+        {
+          "name": "Get Student By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8585/students/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students", "1"]
+            },
+            "description": "Replace '1' with actual student ID"
+          }
+        },
+        {
+          "name": "Create Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"1234567890\",\n  \"age\": 20,\n  \"address\": \"123 Main Street, City\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8585/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students"]
+            }
+          }
+        },
+        {
+          "name": "Create Student 2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Johnson\",\n  \"email\": \"alice@example.com\",\n  \"phone\": \"9876543210\",\n  \"age\": 22,\n  \"address\": \"456 Oak Avenue\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8585/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students"]
+            }
+          }
+        },
+        {
+          "name": "Update Student",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe Updated\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"1111111111\",\n  \"age\": 21,\n  \"address\": \"789 Elm Street\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8585/students/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students", "1"]
+            },
+            "description": "Replace '1' with actual student ID"
+          }
+        },
+        {
+          "name": "Delete Student",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8585/students/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students", "1"]
+            },
+            "description": "Replace '1' with actual student ID"
+          }
+        },
+        {
+          "name": "Test Duplicate Email (Should Fail)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Duplicate Test\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"5555555555\",\n  \"age\": 25,\n  \"address\": \"Test Address\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8585/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8585",
+              "path": ["students"]
+            },
+            "description": "This should fail with 409 Conflict if john.doe@example.com already exists"
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Course Service",
+      "item": [
+        {
+          "name": "Get All Courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8586/courses",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8586",
+              "path": ["courses"]
+            }
+          }
+        },
+        {
+          "name": "Get Course By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8586/courses/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8586",
+              "path": ["courses", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Data Structures\",\n  \"credits\": 4,\n  \"description\": \"Advanced data structures and algorithms\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8586/courses",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8586",
+              "path": ["courses"]
+            }
+          }
+        },
+        {
+          "name": "Update Course",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Data Structures Updated\",\n  \"credits\": 5,\n  \"description\": \"Updated course description\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8586/courses/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8586",
+              "path": ["courses", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Course",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8586/courses/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8586",
+              "path": ["courses", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Teacher Service",
+      "item": [
+        {
+          "name": "Get All Teachers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8587/teachers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8587",
+              "path": ["teachers"]
+            }
+          }
+        },
+        {
+          "name": "Get Teacher By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8587/teachers/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8587",
+              "path": ["teachers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create Teacher",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dr. Robert Smith\",\n  \"teacherId\": \"T001\",\n  \"department\": \"Computer Science\",\n  \"email\": \"robert.smith@university.edu\",\n  \"phone\": \"5551234567\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8587/teachers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8587",
+              "path": ["teachers"]
+            }
+          }
+        },
+        {
+          "name": "Update Teacher",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dr. Robert Smith Updated\",\n  \"teacherId\": \"T001\",\n  \"department\": \"Computer Science\",\n  \"email\": \"robert.smith.new@university.edu\",\n  \"phone\": \"5559999999\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8587/teachers/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8587",
+              "path": ["teachers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Teacher",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8587/teachers/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8587",
+              "path": ["teachers", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Enrollment Service",
+      "item": [
+        {
+          "name": "Get All Enrollments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8588/enrollments",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8588",
+              "path": ["enrollments"]
+            }
+          }
+        },
+        {
+          "name": "Get Enrollment By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8588/enrollments/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8588",
+              "path": ["enrollments", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create Enrollment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": 1,\n  \"courseId\": 1,\n  \"teacherId\": 1,\n  \"status\": \"ACTIVE\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8588/enrollments",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8588",
+              "path": ["enrollments"]
+            },
+            "description": "Make sure student ID 1, course ID 1, and teacher ID 1 exist before running this"
+          }
+        },
+        {
+          "name": "Update Enrollment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": 1,\n  \"courseId\": 1,\n  \"teacherId\": 1,\n  \"status\": \"COMPLETED\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8588/enrollments/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8588",
+              "path": ["enrollments", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Enrollment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8588/enrollments/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8588",
+              "path": ["enrollments", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
