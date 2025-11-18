@@ -13,6 +13,7 @@ import com.ncu.auth.dto.AuthDto;
 import com.ncu.auth.dto.ReturnDto;
 import com.ncu.auth.dto.SignUpDto;
 import com.ncu.auth.service.AuthService;
+import com.ncu.auth.service.JwtService;
 
 @RestController
 @RequestMapping("/auth")
@@ -20,6 +21,9 @@ public class AuthController {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private JwtService jwtService;
 
     @PostMapping("/signup")
     public ResponseEntity<ReturnDto> signUp(@RequestBody SignUpDto signUpDto) {
@@ -45,14 +49,19 @@ public class AuthController {
             System.out.println("POST: Authentication request for email: " + authDto.getEmail());
             boolean isAuthenticated = authService.authenticate(authDto);
             
-            ReturnDto response = new ReturnDto();
-            response.setEmail(authDto.getEmail());
-            
             if (isAuthenticated) {
-                response.setStatus("success");
+                // Generate JWT token
+                String token = jwtService.generateToken(authDto.getEmail());
+                
+                ReturnDto response = new ReturnDto(
+                    "success",
+                    authDto.getEmail(),
+                    token,
+                    3600L // Token expires in 1 hour (3600 seconds)
+                );
                 return ResponseEntity.ok(response);
             } else {
-                response.setStatus("Invalid credentials");
+                ReturnDto response = new ReturnDto("Invalid credentials", authDto.getEmail());
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
             }
         } catch (Exception e) {
