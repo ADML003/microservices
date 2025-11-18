@@ -59,8 +59,22 @@ fi
 # Wait a bit for config server to be ready
 sleep 3
 
-# 2. Start Auth Service
-echo -e "\n${BLUE}2. Starting Authentication Service...${NC}"
+# 2. Start Eureka Server
+echo -e "\n${BLUE}2. Starting Eureka Service Discovery Server...${NC}"
+if check_port 8761; then
+    echo -e "${GREEN}✓ Eureka Server is already running on port 8761${NC}"
+else
+    cd "$BASE_DIR/eureka-server"
+    nohup mvn spring-boot:run > ../eureka-server.log 2>&1 &
+    echo $! > ../eureka-server.pid
+    wait_for_service "Eureka Server" 8761
+fi
+
+# Wait for Eureka to be fully ready
+sleep 5
+
+# 3. Start Auth Service
+echo -e "\n${BLUE}3. Starting Authentication Service...${NC}"
 if check_port 8589; then
     echo -e "${GREEN}✓ Auth Service is already running on port 8589${NC}"
 else
@@ -70,8 +84,8 @@ else
     wait_for_service "Auth Service" 8589
 fi
 
-# 3. Start Student Service
-echo -e "\n${BLUE}3. Starting Student Service...${NC}"
+# 4. Start Student Service
+echo -e "\n${BLUE}4. Starting Student Service...${NC}"
 if check_port 8585; then
     echo -e "${GREEN}✓ Student Service is already running on port 8585${NC}"
 else
@@ -81,8 +95,8 @@ else
     wait_for_service "Student Service" 8585
 fi
 
-# 4. Start Course Service
-echo -e "\n${BLUE}4. Starting Course Service...${NC}"
+# 5. Start Course Service
+echo -e "\n${BLUE}5. Starting Course Service...${NC}"
 if check_port 8586; then
     echo -e "${GREEN}✓ Course Service is already running on port 8586${NC}"
 else
@@ -92,8 +106,8 @@ else
     wait_for_service "Course Service" 8586
 fi
 
-# 5. Start Teacher Service
-echo -e "\n${BLUE}5. Starting Teacher Service...${NC}"
+# 6. Start Teacher Service
+echo -e "\n${BLUE}6. Starting Teacher Service...${NC}"
 if check_port 8587; then
     echo -e "${GREEN}✓ Teacher Service is already running on port 8587${NC}"
 else
@@ -103,8 +117,8 @@ else
     wait_for_service "Teacher Service" 8587
 fi
 
-# 6. Start Enrollment Service
-echo -e "\n${BLUE}6. Starting Enrollment Service...${NC}"
+# 7. Start Enrollment Service
+echo -e "\n${BLUE}7. Starting Enrollment Service...${NC}"
 if check_port 8588; then
     echo -e "${GREEN}✓ Enrollment Service is already running on port 8588${NC}"
 else
@@ -114,8 +128,8 @@ else
     wait_for_service "Enrollment Service" 8588
 fi
 
-# 7. Start API Gateway
-echo -e "\n${BLUE}7. Starting API Gateway...${NC}"
+# 8. Start API Gateway
+echo -e "\n${BLUE}8. Starting API Gateway...${NC}"
 if check_port 8080; then
     echo -e "${GREEN}✓ API Gateway is already running on port 8080${NC}"
 else
@@ -132,6 +146,7 @@ echo "======================================"
 echo ""
 echo "Service Status:"
 echo "  Config Server:      http://localhost:8888"
+echo "  Eureka Server:      http://localhost:8761"
 echo "  Auth Service:       http://localhost:8589"
 echo "  Student Service:    http://localhost:8585"
 echo "  Course Service:     http://localhost:8586"
