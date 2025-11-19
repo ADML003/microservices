@@ -1,0 +1,8 @@
+/Users/ADML/Desktop/microservices /course-service/src/main/java/com/ncu/course/CourseServiceApplication.java
+/Users/ADML/Desktop/microservices /course-service/src/main/java/com/ncu/course/controller/CourseController.java
+/Users/ADML/Desktop/microservices /course-service/src/main/java/com/ncu/course/dto/CourseDto.java
+/Users/ADML/Desktop/microservices /course-service/src/main/java/com/ncu/course/model/Course.java
+/Users/ADML/Desktop/microservices /course-service/src/main/java/com/ncu/course/repository/CourseRepository.java
+/Users/ADML/Desktop/microservices /course-service/src/main/java/com/ncu/course/repository/CourseRepositoryNew.java
+/Users/ADML/Desktop/microservices /course-service/src/main/java/com/ncu/course/service/CourseServiceImpl.java
+/Users/ADML/Desktop/microservices /course-service/src/main/java/com/ncu/course/service/ICourseService.java
